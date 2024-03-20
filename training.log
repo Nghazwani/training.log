@@ -1,0 +1,111 @@
+
+################ TRAINING ARGUMENTS ###################
+folder: /cms/data/nghazwan/ana/CentOS7/PFHCAL_DRN_112023v1/CMSSW_12_6_4/src/PFCalibration/DRN_for_PF/Trained_eta2pt75_target_ratioflip_epoch100
+data_folder: /cms/data/nghazwan/ana/CentOS7/PFHCAL_DRN_112023v1/CMSSW_12_6_4/src/PFCalibration/DRN_for_PF/pickle_eta2pt75
+idx_name: all
+target: ratioflip
+ES: no
+coords: cart
+loop: True
+pool: max
+in_layers: 3
+agg_layers: 2
+mp_layers: 2
+out_layers: 2
+hidden_dim: 64
+device: 0
+train_batches: 500
+train_batch_size: 400
+valid_batch_size: 400
+acc_rate: 2
+loss_func: abs_energy_fraction_loss
+num_classes: 1
+n_epochs: 100
+lr_sched: Const
+max_lr: 0.0001
+min_lr: 1e-07
+restart_period: 100
+gamma: None
+thresh: None
+reg: None
+epsilon: None
+minalpha: None
+warm: None
+semiparam: False
+graph_features: []
+####################pass 1 ###################################
+###########################pass 2############################
+==============pass 1
+==============pass 2
+#################################pass 3######################
+1292 valid points
+5170 train points
+loading in features...
+	Took 0.248 seconds
+loading in target...
+	Took 0.002 seconds
+Matching targets with features...
+  0%|          | 0/6462 [00:00<?, ?it/s]100%|██████████| 6462/6462 [00:00<00:00, 161230.14it/s]
+/home/nghazwan/mambaforge/envs/PFHCDRN2/lib/python3.12/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+/home/nghazwan/mambaforge/envs/PFHCDRN2/lib/python3.12/site-packages/torch_geometric/nn/conv/message_passing.py:966: UserWarning: 'EdgeConv.jittable' is deprecated and a no-op. Please remove its usage.
+  warnings.warn(f"'{self.__class__.__name__}.jittable' is deprecated "
+2024-03-20 01:30:35,021 - GNNTrainer - INFO - Model: 
+DynamicReductionNetwork(
+  (drn): RecursiveScriptModule(
+    original_name=DynamicReductionNetworkJit
+    (inputnet): RecursiveScriptModule(
+      original_name=Sequential
+      (0): RecursiveScriptModule(original_name=Linear)
+      (1): RecursiveScriptModule(original_name=ELU)
+      (2): RecursiveScriptModule(original_name=Linear)
+      (3): RecursiveScriptModule(original_name=ELU)
+      (4): RecursiveScriptModule(original_name=Linear)
+      (5): RecursiveScriptModule(original_name=ELU)
+    )
+    (agg_layers): RecursiveScriptModule(
+      original_name=ModuleList
+      (0): RecursiveScriptModule(
+        original_name=EdgeConv
+        (aggr_module): RecursiveScriptModule(original_name=SumAggregation)
+        (nn): RecursiveScriptModule(
+          original_name=Sequential
+          (0): RecursiveScriptModule(original_name=Linear)
+          (1): RecursiveScriptModule(original_name=ELU)
+          (2): RecursiveScriptModule(original_name=Linear)
+          (3): RecursiveScriptModule(original_name=ELU)
+        )
+      )
+      (1): RecursiveScriptModule(
+        original_name=EdgeConv
+        (aggr_module): RecursiveScriptModule(original_name=SumAggregation)
+        (nn): RecursiveScriptModule(
+          original_name=Sequential
+          (0): RecursiveScriptModule(original_name=Linear)
+          (1): RecursiveScriptModule(original_name=ELU)
+          (2): RecursiveScriptModule(original_name=Linear)
+          (3): RecursiveScriptModule(original_name=ELU)
+        )
+      )
+    )
+    (output): RecursiveScriptModule(
+      original_name=Sequential
+      (0): RecursiveScriptModule(original_name=Linear)
+      (1): RecursiveScriptModule(original_name=ELU)
+      (2): RecursiveScriptModule(original_name=Linear)
+    )
+  )
+)
+Parameters: 62405
+2024-03-20 01:30:35,021 - GNNTrainer - INFO - Epoch 0
+/home/nghazwan/mambaforge/envs/PFHCDRN2/lib/python3.12/site-packages/torch/cuda/memory.py:329: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
+  warnings.warn(
+datalen is 6462
+batch size is 400
+ES is no and the number of features is 4
+#######################################pass 4################
+Pooling with max
+Using self-loops
+There are 2 aggregation layers
+<function abs_energy_fraction_loss at 0x2aaf8ae05ee0>
+  0%|          | 0/13 [00:00<?, ?it/s]  8%|▊         | 1/13 [00:00<00:10,  1.13it/s]loss = nan:   8%|▊         | 1/13 [00:01<00:10,  1.13it/s]loss = nan:  15%|█▌        | 2/13 [00:01<00:05,  1.90it/s]
